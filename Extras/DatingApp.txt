@@ -1,0 +1,104 @@
+--------BACK END--------
+Requisitos de Instalação
+Instalar o .NET SDK
+dotnet --version
+
+dotnet --info
+dotnet new list
+dotnet new sln
+dotnet new webapi -controllers -n API
+dotnet sln add API
+dotnet sln list
+code .
+
+extensions: .NET Install Tool, C# , C# Dev Kit, Material Icon Theme, NuGet Gallery, sqllite, e sqllite viewer.
+
+dotnet clean
+dotnet build
+dotnet run
+
+check nuggets:
+dotnet list package --outdated
+dotnet add package NomeDoPacote --version <nova_versão>
+dotnet-outdated --upgrade
+
+CHECK CERTS HTTPS
+dotnet dev-certs https --check
+dotnet dev-certs https --clear
+dotnet dev-certs https --trust
+
+nugget
+efcore
+Microsoft.EntityFrameworkCore.Design
+Microsoft.EntityFrameworkCore.Sqlite
+
+dps
+dotnet restore
+
+
+
+--------FRONT END--------
+Prerequisites
+Node.js - v20.19.0
+
+npm install -g @angular/cli
+ou
+npm install -g @angular/cli@20
+ou 
+npm install -g @angular/cli@next
+
+ng new <project-name>
+
+ng serve
+
+extensions:
+Angular Language Service
+ESLint
+Tailwind CSS IntelliSense
+
+after
+
+setting > search "brakets" > first step switch for "always"
+
+setting > search "linked" > Enable
+
+
+Cert HTTP
+https://github.com/FiloSottile/mkcert
+
+
+
+
+
+
+git config --global user.name "joaoggomes98"
+git config --global user.email "joao.g.gomes1998@hotmail.com"
+
+
+
+
+add nugget for help creat token key
+
+System.IdentityModel.Tokens.Jwt
+Microsoft.IdentityModel.Tokens
+
+
+middleware authenticion
+
+Microsoft.AspNetCore.Authentication.JwtBearer
+
+
+
+
+
+
+GIT
+$ dotnet new gitignore
+git add .
+git commit -m "Novo repositório iniciado"
+git branch -M main
+git remote add origin https://github.com/teuusuario/nomerepositorio.git
+git push -u origin main
+
+
+

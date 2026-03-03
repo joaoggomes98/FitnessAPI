@@ -1,0 +1,143 @@
+Startup.cs → Regista serviços e middleware (injeção de dependência, Swagger, Auth, DbContext, etc.)	Configurar a connection string do Supabase
+
+Program.cs → Ponto de arranque da app, aplica migrações e seeds	Adicionar CanConnectAsync() para testar ligação
+
+DataContext.cs → Contém a configuração EF Core (mapeia entidades para tabelas)	Usado por MigrateAsync()
+
+
+📁Controllers/
+
+👉 O cérebro da API — endpoints.
+Aqui ficas com classes tipo UserController.cs, AccountController.cs, LocalVisitadoController.cs, etc.
+
+Cada controller:
+
+Recebe requisições HTTP (GET, POST, PUT, DELETE)
+
+Chama serviços e repositórios para processar os dados
+
+Retorna respostas JSON para o cliente
+
+
+📁Data/
+
+👉 Onde vive o DataContext e os repositórios (acesso ao banco).
+
+Geralmente contém:
+
+DataContext.cs → classe principal que herda de DbContext e representa a base de dados.
+
+UserRepository.cs, etc. → classes que contêm métodos para interagir com as tabelas (GetAllUsers(), SaveChangesAsync(), etc.).
+
+
+📁 Models/
+
+👉 Representa as entidades do domínio (as tabelas da BD).
+Exemplos: AppUser.cs, Monument.cs, Video.cs, Image.cs, etc.
+
+📁 DTOs/
+
+👉 São os Data Transfer Objects — objetos simplificados usados para enviar/receber dados da API.
+Evita expor as entidades completas do banco.
+
+
+📁 Interfaces/
+
+👉 Define contratos que as classes concretas implementam.
+Facilita testes e mantém o código desacoplado.
+
+
+📁 Services/
+
+👉 Contém lógica de negócio ou utilitários de infraestrutura, como geração de JWTs, envio de emails, etc.
+
+
+📁 Extensions/
+
+👉 Contém métodos de extensão que ajudam a configurar serviços no Startup.cs ou Program.cs.
+
+📁 Helpers/
+
+👉 Contém classes auxiliares como:
+
+	AutoMapperProfiles.cs → mapeamento entre DTOs e Models.
+
+	UserParams.cs → filtros e paginação.
+
+	ClaimsPrincipalExtensions.cs → métodos extras para obter dados do User.Identity.
+
+
+📁 Middleware/
+
+👉 Intercepta requisições/respostas para aplicar lógica global.
+
+
+📁 Migrations/
+
+👉 Geradas automaticamente pelo EF Core.
+Guardam o histórico das alterações feitas à estrutura da base de dados.
+Cada ficheiro .cs aqui é uma versão do esquema da BD.
+
+
+📁 Properties/
+
+👉 Contém launchSettings.json — define como o projeto é executado (porta, ambiente, etc.).
+
+
+📄 Program.cs / Startup.cs
+
+👉 Ponto de entrada da aplicação.
+👉 Registra middlewares, serviços e arranca o servidor.
+
+📄 appsettings.json / appsettings.Development.json
+
+👉 Guardam configurações (connection strings, JWT secrets, etc.).
+
+
+[Login]  --->  TokenService.CreateTokenAsync(user)
+                 │
+                 ├─ Cria claims (ID, username, roles)
+                 ├─ Gera chave secreta
+                 ├─ Cria credenciais de assinatura
+                 ├─ Define validade (7 dias)
+                 └─ Cria JWT e devolve string
+
+API devolve token JWT
+↓
+Cliente guarda token
+↓
+Cliente envia Authorization: Bearer <token>
+↓
+API valida token e autentica utilizador
+
+
+Scoope:
+
+Program.cs
+   ↓
+AddScoped<IUserRepository, UserRepository>()
+AddScoped<ITokenService, TokenService>()
+   ↓
+Container de serviços (IServiceCollection)
+   ↓
+Quando Controller é criado:
+   ↓
+ASP.NET pede IUserRepository  → cria UserRepository
+ASP.NET pede ITokenService    → cria TokenService
+   ↓
+Injeta no construtor do Controller
+   ↓
+Controller usa os serviços
+   ↓
+Pedido HTTP termina
+   ↓
+Serviços Scoped são destruídos
+
+dotnet user-secrets set "TokenKey" "EmpresaTM_a4392a161ad5297c966e45c8"
+
+
+{
+  "username": "string1",
+  "email": "string@string1.com",
+  "password": "string123"
+}
