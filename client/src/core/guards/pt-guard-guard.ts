@@ -1,0 +1,18 @@
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../services/auth-service';
+
+export const ptGuard: CanActivateFn = () => {
+
+  const authService = inject(AuthService)
+  const router = inject(Router)
+
+  const user = authService.currentUser()
+
+  if(user?.role === 'PT'){
+    return true
+  }
+
+  router.navigateByUrl('/')
+  return false
+}

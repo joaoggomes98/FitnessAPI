@@ -1,17 +1,10 @@
-import { Component, Input, signal } from '@angular/core';
-import { Register } from "../account/register/register";
-import { User } from '../../types/user';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [Register],
+  imports: [RouterLink],
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrl: './home.css'
 })
-export class Home {
-  protected registerMode = signal(false);
-
-  showRegister(value: boolean){
-    this.registerMode.set(value);
-  }
-}
+export class Home {}

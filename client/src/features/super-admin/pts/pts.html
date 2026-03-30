@@ -1,0 +1,86 @@
+<div class="space-y-6">
+    <div>
+        <h1 class="text-3xl font-bold">Gerir PTs</h1>
+        <p class="text-base-content/70">
+            Cria, visualiza e remove personal trainers.
+        </p>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <h2 class="card-title">Criar novo PT</h2>
+
+                <form class="space-y-4" (ngSubmit)="createPt()">
+                    <div>
+                        <label class="label">
+                            <span class="label-text">Nome</span>
+                        </label>
+                        <input type="text" name="name" [(ngModel)]="createModel.name" placeholder="Nome do PT"
+                            class="input input-bordered w-full" required />
+                    </div>
+
+                    <div>
+                        <label class="label">
+                            <span class="label-text">Email</span>
+                        </label>
+                        <input type="email" name="email" [(ngModel)]="createModel.email" placeholder="Email do PT"
+                            class="input input-bordered w-full" required />
+                    </div>
+
+                    <div>
+                        <label class="label">
+                            <span class="label-text">Password</span>
+                        </label>
+                        <input type="password" name="password" [(ngModel)]="createModel.password" placeholder="Password"
+                            class="input input-bordered w-full" required />
+                    </div>
+
+                    <button class="btn btn-primary w-full">
+                        Criar PT
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <h2 class="card-title">Lista de PTs</h2>
+
+                @if (loading()) {
+                <div class="space-y-3">
+                    <div class="skeleton h-20 w-full"></div>
+                    <div class="skeleton h-20 w-full"></div>
+                    <div class="skeleton h-20 w-full"></div>
+                </div>
+                }
+
+                @if (!loading() && users().length === 0) {
+                <div class="text-center py-10">
+                    <h3 class="text-lg font-semibold">Ainda não tens PTs</h3>
+                    <p class="text-base-content/70">
+                        Cria o primeiro PT para começares a gerir o teu estúdio.
+                    </p>
+                </div>
+                }
+
+                @if (!loading() && users().length > 0) {
+                <div class="space-y-3">
+                    @for (user of users(); track user.id) {
+                    <div class="border rounded-xl p-4 flex items-center justify-between">
+                        <div>
+                            <div class="font-semibold text-lg">{{ user.displayName }}</div>
+                            <div class="text-sm opacity-70">{{ user.email }}</div>
+                        </div>
+
+                        <button class="btn btn-sm btn-error" type="button" (click)="deleteUser(user.id)">
+                            Remover
+                        </button>
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

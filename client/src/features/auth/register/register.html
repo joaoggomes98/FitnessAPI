@@ -1,0 +1,51 @@
+<div class="w-full max-w-md">
+  <div class="card bg-base-100 shadow-2xl border border-base-300">
+    <div class="card-body p-8">
+      <div class="text-center mb-4">
+        <h1 class="text-3xl font-bold">Registo</h1>
+        <p class="text-sm text-base-content/70 mt-2">
+          Cria a tua conta para começar
+        </p>
+      </div>
+
+      <form class="space-y-4" (ngSubmit)="register()">
+        <div>
+          <label class="label">
+            <span class="label-text font-medium">Nome</span>
+          </label>
+          <input type="text" name="name" [(ngModel)]="model.name" placeholder="Nome"
+            class="input input-bordered w-full" />
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-medium">Email</span>
+          </label>
+          <input type="email" name="email" [(ngModel)]="model.email" placeholder="Email"
+            class="input input-bordered w-full" />
+        </div>
+
+        <div>
+          <label class="label">
+            <span class="label-text font-medium">Password</span>
+          </label>
+          <input type="password" name="password" [(ngModel)]="model.password" placeholder="Password"
+            class="input input-bordered w-full" />
+        </div>
+
+        <button class="btn btn-primary w-full mt-2 hover:shadow-lg transition duration-200">
+          Registar
+        </button>
+      </form>
+
+      <div class="divider my-2">ou</div>
+
+      <p class="text-center text-sm text-base-content/70">
+        Já tens conta?
+        <a routerLink="/auth/login" class="link link-primary font-medium">
+          Entrar
+        </a>
+      </p>
+    </div>
+  </div>
+</div>

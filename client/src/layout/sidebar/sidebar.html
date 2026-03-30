@@ -1,0 +1,48 @@
+<aside class="w-72 min-h-[calc(100vh-64px)] border-r bg-base-100 hidden md:block">
+  <div class="p-4">
+    <ul class="menu w-full gap-1">
+      <li>
+        <a routerLink="/" routerLinkActive="active">Home</a>
+      </li>
+
+      @if (user()?.role === 'SuperAdmin') {
+        <li class="menu-title mt-4">Super Admin</li>
+        <li>
+          <a routerLink="/super-admin/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li>
+          <a routerLink="/super-admin/pts" routerLinkActive="active">PTs</a>
+        </li>
+      }
+
+      @if (user()?.role === 'PT') {
+        <li class="menu-title mt-4">PT</li>
+        <li>
+          <a routerLink="/pt/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li>
+          <a routerLink="/pt/clients" routerLinkActive="active">Clientes</a>
+        </li>
+        <li>
+          <a routerLink="/pt/training-plans" routerLinkActive="active">Treinos</a>
+        </li>
+        <li>
+          <a routerLink="/pt/nutrition-plans" routerLinkActive="active">Nutrição</a>
+        </li>
+      }
+
+      @if (user()?.role === 'Client') {
+        <li class="menu-title mt-4">Cliente</li>
+        <li>
+          <a routerLink="/client/dashboard" routerLinkActive="active">Dashboard</a>
+        </li>
+        <li>
+          <a routerLink="/client/training-plan" routerLinkActive="active">Plano de treino</a>
+        </li>
+        <li>
+          <a routerLink="/client/nutrition-plan" routerLinkActive="active">Plano de nutrição</a>
+        </li>
+      }
+    </ul>
+  </div>
+</aside>

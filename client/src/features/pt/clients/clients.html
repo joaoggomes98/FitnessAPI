@@ -1,0 +1,115 @@
+<div class="space-y-6">
+    <div>
+        <h1 class="text-3xl font-bold">Gerir Clientes</h1>
+        <p class="text-base-content/70">
+            Aqui podes criar, editar, visualizar e remover os teus clientes.
+        </p>
+    </div>
+
+
+    <div class="grid lg:grid-cols-2 gap-6">
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <h2 class="card-title">Criar novo cliente</h2>
+
+                <form class="space-y-4" (ngSubmit)="createClient()">
+                    <div>
+                        <label class="label">
+                            <span class="label-text">Nome</span>
+                        </label>
+                        <input type="text" name="name" [(ngModel)]="model.name" placeholder="Nome do cliente"
+                            class="input input-bordered w-full" required />
+                    </div>
+
+                    <div>
+                        <label class="label">
+                            <span class="label-text">Email</span>
+                        </label>
+                        <input type="email" name="email" [(ngModel)]="model.email" placeholder="Email do cliente"
+                            class="input input-bordered w-full" required />
+                    </div>
+
+                    <div>
+                        <label class="label">
+                            <span class="label-text">Password</span>
+                        </label>
+                        <input type="password" name="password" [(ngModel)]="model.password" placeholder="Password"
+                            class="input input-bordered w-full" required />
+                    </div>
+
+                    <button class="btn btn-primary w-full">
+                        Criar Cliente
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <h2 class="card-title">Lista de clientes</h2>
+
+                @if (loading()) {
+                <div class="space-y-3">
+                    <div class="skeleton h-24 w-full"></div>
+                    <div class="skeleton h-24 w-full"></div>
+                    <div class="skeleton h-24 w-full"></div>
+                </div>
+                }
+
+                @if (!loading() && clients().length === 0) {
+                <div class="text-center py-10">
+                    <h3 class="text-lg font-semibold">Ainda não tens clientes</h3>
+                    <p class="text-base-content/70">
+                        Cria o teu primeiro cliente para começares a gerir planos.
+                    </p>
+                </div>
+                }
+
+                @if (!loading() && clients().length > 0) {
+                <div class="space-y-3">
+                    @for (client of clients(); track client.id) {
+                    <div class="border rounded-xl p-4">
+                        @if (editingClientId() === client.id) {
+                        <div class="space-y-3">
+                            <input type="text" name="edit-name-{{ client.id }}" [(ngModel)]="editModel.name"
+                                class="input input-bordered w-full" />
+
+                            <input type="email" name="edit-email-{{ client.id }}" [(ngModel)]="editModel.email"
+                                class="input input-bordered w-full" />
+
+                            <div class="flex gap-2 justify-end">
+                                <button type="button" class="btn btn-sm" (click)="cancelEdit()">
+                                    Cancelar
+                                </button>
+
+                                <button type="button" class="btn btn-sm btn-primary" (click)="saveEdit(client.id)">
+                                    Guardar
+                                </button>
+                            </div>
+                        </div>
+                        } @else {
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-semibold text-lg">{{ client.name }}</div>
+                                <div class="text-sm opacity-70">{{ client.email }}</div>
+                            </div>
+
+                            <div class="flex gap-2">
+                                <button class="btn btn-sm btn-warning" type="button" (click)="startEdit(client)">
+                                    Editar
+                                </button>
+
+                                <button class="btn btn-sm btn-error" type="button" (click)="deleteClient(client.id)">
+                                    Remover
+                                </button>
+                            </div>
+                        </div>
+                        }
+                    </div>
+                    }
+                </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

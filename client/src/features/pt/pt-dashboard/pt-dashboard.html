@@ -1,0 +1,43 @@
+<div class="space-y-6">
+  <div>
+    <h1 class="text-3xl font-bold">Dashboard PT</h1>
+    <p class="text-base-content/70">
+      Olá, {{ user()?.displayName }}. Aqui tens um resumo rápido da tua área.
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-4">
+    <div class="card bg-base-100 shadow">
+      <div class="card-body">
+        <p class="text-sm text-base-content/60">Clientes</p>
+
+        @if (loading()) {
+          <div class="skeleton h-10 w-20"></div>
+        } @else {
+          <p class="text-4xl font-bold">{{ totalClients() }}</p>
+        }
+      </div>
+    </div>
+
+    <a routerLink="/pt/clients" class="card bg-base-100 shadow hover:shadow-lg transition">
+      <div class="card-body">
+        <h2 class="card-title">Gerir Clientes</h2>
+        <p>Criar, editar e remover clientes.</p>
+      </div>
+    </a>
+
+    <a routerLink="/pt/training-plans" class="card bg-base-100 shadow hover:shadow-lg transition">
+      <div class="card-body">
+        <h2 class="card-title">Planos de Treino</h2>
+        <p>Criar planos de treino para os teus clientes.</p>
+      </div>
+    </a>
+
+    <a routerLink="/pt/nutrition-plans" class="card bg-base-100 shadow hover:shadow-lg transition md:col-span-3">
+      <div class="card-body">
+        <h2 class="card-title">Planos de Nutrição</h2>
+        <p>Criar planos de nutrição e acompanhar os teus clientes.</p>
+      </div>
+    </a>
+  </div>
+</div>

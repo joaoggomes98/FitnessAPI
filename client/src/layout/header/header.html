@@ -1,0 +1,32 @@
+<header class=" h-16 border-b shadow-sm  backdrop-blur-md bg-black/30">
+  <div class="h-full px-4 md:px-6 flex items-center justify-between">
+    <div class="flex-1">
+    <a routerLink="/" class="flex items-center gap-3">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-primary text-primary-content font-bold shadow-md ">
+        F
+      </div>
+      <div>
+        <span class="text-2xl font-extrabold tracking-tight text-primary">
+          Plataforma Fitness
+        </span>
+        <p class="text-xs text-base-content/60 -mt-1 hidden sm:block">
+          Treino, nutrição e gestão
+        </p>
+      </div>
+    </a>
+  </div>
+
+    <div class="flex items-center gap-4">
+      @if (user()) {
+        <div class="text-right hidden sm:block">
+          <div class="font-medium">{{ user()?.displayName }}</div>
+          <div class="text-xs text-base-content/60">{{ user()?.role }}</div>
+        </div>
+
+        <button class="btn btn-sm btn-error" (click)="logout()">
+          Logout
+        </button>
+      }
+    </div>
+  </div>
+</header>

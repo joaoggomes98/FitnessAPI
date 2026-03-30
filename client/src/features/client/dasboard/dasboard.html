@@ -1,0 +1,24 @@
+<div class="space-y-6">
+    <div>
+        <h1 class="text-3xl font-bold">Dashboard Cliente</h1>
+        <p class="text-base-content/70">
+            Olá, {{ user()?.displayName }}. Consulta aqui os teus planos.
+        </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+        <a routerLink="/client/training-plan" class="card bg-base-100 shadow hover:shadow-lg transition">
+            <div class="card-body">
+                <h2 class="card-title">Plano de Treino</h2>
+                <p>Ver o teu plano de treino atual.</p>
+            </div>
+        </a>
+
+        <a routerLink="/client/nutrition-plan" class="card bg-base-100 shadow hover:shadow-lg transition">
+            <div class="card-body">
+                <h2 class="card-title">Plano de Nutrição</h2>
+                <p>Ver o teu plano de nutrição atual.</p>
+            </div>
+        </a>
+    </div>
+</div>

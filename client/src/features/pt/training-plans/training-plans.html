@@ -1,0 +1,67 @@
+<div class="space-y-6">
+    <div>
+        <h1 class="text-3xl font-bold">Planos de Treino</h1>
+        <p class="text-base-content/70">
+            Cria um plano de treino para um dos teus clientes.
+        </p>
+    </div>
+
+    <div class="card bg-base-100 shadow max-w-2xl">
+        <div class="card-body">
+            <h2 class="card-title">Novo plano de treino</h2>
+
+            @if (loadingClients()) {
+            <div class="space-y-3">
+                <div class="skeleton h-12 w-full"></div>
+                <div class="skeleton h-12 w-full"></div>
+                <div class="skeleton h-32 w-full"></div>
+            </div>
+            } @else if (clients().length === 0) {
+            <div class="text-center py-8">
+                <h3 class="text-lg font-semibold">Sem clientes disponíveis</h3>
+                <p class="text-base-content/70">
+                    Primeiro cria clientes para poderes atribuir planos de treino.
+                </p>
+            </div>
+            } @else {
+            <form class="space-y-4" (ngSubmit)="createTrainingPlan()">
+                <div>
+                    <label class="label">
+                        <span class="label-text">Cliente</span>
+                    </label>
+
+                    <select name="clientId" [(ngModel)]="model.clientId" class="select select-bordered w-full" required>
+                        <option value="" disabled>Seleciona um cliente</option>
+
+                        @for (client of clients(); track client.id) {
+                        <option [value]="client.id">
+                            {{ client.name }} - {{ client.email }}
+                        </option>
+                        }
+                    </select>
+                </div>
+
+                <div>
+                    <label class="label">
+                        <span class="label-text">Título</span>
+                    </label>
+                    <input type="text" name="title" [(ngModel)]="model.title" placeholder="Ex: Plano Hipertrofia"
+                        class="input input-bordered w-full" required />
+                </div>
+
+                <div>
+                    <label class="label">
+                        <span class="label-text">Descrição</span>
+                    </label>
+                    <textarea name="description" [(ngModel)]="model.description" placeholder="Descrição do plano"
+                        class="textarea textarea-bordered w-full" rows="5" required></textarea>
+                </div>
+
+                <button class="btn btn-primary w-full">
+                    Criar Plano de Treino
+                </button>
+            </form>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="space-y-6">
+    <div>
+        <h1 class="text-3xl font-bold">Dashboard SuperAdmin</h1>
+        <p class="text-base-content/70">
+            Olá, {{ user()?.displayName }}. Aqui geres os PTs do teu estúdio.
+        </p>
+    </div>
+
+    @if (error()) {
+    <div class="alert alert-error">
+        <span>{{ error() }}</span>
+    </div>
+    }
+
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <p class="text-sm text-base-content/60">PTs</p>
+
+                @if (loading()) {
+                <div class="skeleton h-10 w-20"></div>
+                } @else {
+                <p class="text-4xl font-bold">{{ totalPts() }}</p>
+                }
+            </div>
+        </div>
+
+        <a routerLink="/super-admin/pts" class="card bg-base-100 shadow hover:shadow-lg transition">
+            <div class="card-body">
+                <h2 class="card-title">Gerir PTs</h2>
+                <p>Criar, editar e remover personal trainers.</p>
+            </div>
+        </a>
+    </div>
+</div>

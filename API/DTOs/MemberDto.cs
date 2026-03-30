@@ -4,7 +4,8 @@ namespace API.DTOs;
 
 public class MemberDto
 {
-    public required int Id { get; set; }
+    public string Id { get; set; } = string.Empty;
+    public required string DisplayName { get; set; }
+
     public required string Email { get; set; }
-    public required string DisplayName { get; set; } 
 }

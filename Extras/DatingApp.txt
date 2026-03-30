@@ -1,4 +1,9 @@
 --------BACK END--------
+dotnet ef database drop      # Elimina a BD
+dotnet ef migrations remove  # Remove a última migration (opcional)
+dotnet ef migrations add InitialCreate  # Cria nova migration
+dotnet ef database update    # Cria/reconstrói a BD
+
 Requisitos de Instalação
 Instalar o .NET SDK
 dotnet --version
@@ -67,6 +72,11 @@ Cert HTTP
 https://github.com/FiloSottile/mkcert
 
 
+Create componente: ng g c layout/nav --dry-run  - see how it will be created
+		   ng g c layout/nav - create component	
+Create service: ng g s account-service --dry-run
+ 
+
 
 
 
@@ -77,7 +87,7 @@ git config --global user.email "joao.g.gomes1998@hotmail.com"
 
 
 
-add nugget for help creat token key
+add nugget for help create token key
 
 System.IdentityModel.Tokens.Jwt
 Microsoft.IdentityModel.Tokens

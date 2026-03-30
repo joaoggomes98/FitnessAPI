@@ -1,0 +1,40 @@
+<div class="space-y-6">
+    <h1 class="text-3xl font-bold">Plano de Treino</h1>
+
+    @if (loading()) {
+    <div class="space-y-4">
+        <div class="skeleton h-28 w-full"></div>
+        <div class="skeleton h-28 w-full"></div>
+    </div>
+    }
+
+    @if (error()) {
+    <div class="alert alert-error">
+        <span>{{ error() }}</span>
+    </div>
+    }
+
+    @if (!loading() && plans().length === 0) {
+    <div class="card bg-base-100 shadow">
+        <div class="card-body text-center py-10">
+            <h2 class="text-xl font-semibold">Ainda não tens plano de treino</h2>
+            <p class="text-base-content/70">
+                O teu PT ainda não te atribuiu nenhum plano.
+            </p>
+        </div>
+    </div>
+    }
+
+    @if (!loading() && plans().length > 0) {
+    <div class="space-y-4">
+        @for (plan of plans(); track plan.id) {
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+                <h2 class="card-title">{{ plan.title }}</h2>
+                <p>{{ plan.description }}</p>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

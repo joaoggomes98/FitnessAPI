@@ -1,0 +1,8 @@
+.bg-fitness {
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.5)),
+    url('/0a0203aa-fbdd-46bc-9e45-f9cdf6860e78.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

@@ -141,3 +141,11 @@ dotnet user-secrets set "TokenKey" "EmpresaTM_a4392a161ad5297c966e45c8"
   "email": "string@string1.com",
   "password": "string123"
 }
+
+Tecnologia-Função
+Identity-gerir utilizadores
+Entity Framework-falar com o banco
+JWT-autenticação
+Controllers-endpoints
+Services-lógica da aplicação
+DbContext-ligação à base de dados

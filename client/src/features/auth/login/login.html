@@ -1,0 +1,43 @@
+<div class="w-full max-w-md">
+  <div class="card bg-base-100 shadow-2xl border border-base-300">
+    <div class="card-body p-8">
+      <div class="text-center mb-4">
+        <h1 class="text-3xl font-bold p-2">Login</h1>
+        <p class="text-sm text-base-content/70 mt-2">
+          Entra na tua conta para aceder à plataforma.
+        </p>
+      </div>
+
+      <form class="space-y-4" (ngSubmit)="login()">
+        <div>
+          <label class="label mb-2">
+            <span class="label-text font-medium">Email</span>
+          </label>
+          <input type="email" name="email" [(ngModel)]="creds.email" placeholder="Email"
+            class="input input-bordered w-full" required />
+        </div>
+
+        <div>
+          <label class="label mb-2">
+            <span class="label-text font-medium">Password</span>
+          </label>
+          <input type="password" name="password" [(ngModel)]="creds.password" placeholder="Password"
+            class="input input-bordered w-full" required />
+        </div>
+
+        <button class="btn btn-primary w-full mt-2 hover:shadow-lg transition duration-200">
+          Entrar
+        </button>
+      </form>
+
+      <div class="divider my-2">ou</div>
+
+      <p class="text-center text-sm text-base-content/70">
+        Ainda não tens conta?
+        <a routerLink="/auth/register" class="link link-primary font-medium">
+          Regista-te
+        </a>
+      </p>
+    </div>
+  </div>
+</div>
