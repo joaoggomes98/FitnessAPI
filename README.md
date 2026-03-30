@@ -1,68 +1,212 @@
-# 💘 DattingApp API
+# 🏋️ Fitness Platform
 
-API desenvolvida em **ASP.NET Core** para gerir utilizadores e funcionalidades de um aplicativo de relacionamentos.
+Plataforma fullstack para gestão de personal trainers, clientes, planos de treino e planos de nutrição.
+
+Projeto desenvolvido com **ASP.NET Core + Angular**, com autenticação, roles e dashboard completo.
 
 ---
 
-### 🚀 Como executar o projeto
-```bash
-1️⃣ Clonar o repositório
+## 🚀 Funcionalidades
 
-git clone https://github.com/joaosilva/datingapp.git
-cd datingapp/API
+### 🔐 Autenticação
 
-2️⃣ Restaurar dependências
-dotnet restore
+* Login com JWT
+* Gestão de utilizadores com Identity
+* Roles:
 
-3️⃣ Criar ou atualizar a base de dados
+  * SuperAdmin
+  * PT (Personal Trainer)
+  * Client
 
-Se o projeto utiliza Entity Framework Core, aplica as migrações:
-dotnet ef database update
+---
 
-4️⃣ Executar o servidor
+### 👨‍💼 SuperAdmin
 
-dotnet run
+* Criar / editar / remover PTs
+* Gestão de utilizadores
+* Atribuição de roles
 
-A API ficará disponível em:
-👉 https://localhost:5001
+---
 
-E a documentação Swagger em:
-👉 https://localhost:5001/swagger
+### 🧑‍🏫 PT (Personal Trainer)
 
-📡 Endpoints principais
+* Criar e gerir clientes
+* Criar planos de treino
+* Criar planos de nutrição
+* Visualizar dados dos clientes
 
-Método	Rota	Descrição
-GET	/api/members	Lista todos os utilizadores
-GET	/api/members/{id}	Retorna um utilizador pelo ID
+---
 
-🧰 Tecnologias usadas
+### 🧑‍💻 Client
 
-ASP.NET Core 8.0
+* Visualizar plano de treino
+* Visualizar plano de nutrição
+
+---
+
+## 🧱 Tecnologias
+
+### Backend (.NET)
+
+* ASP.NET Core
+* Entity Framework Core
+* ASP.NET Identity
+* JWT Authentication
+
+### Frontend (Angular)
+
+* Angular (Standalone Components)
+* Signals (state management)
+* Tailwind CSS
+* DaisyUI
+
+---
+
+## 🏗️ Arquitetura
+
+```text
+Frontend (Angular)
+        ↓
+API (ASP.NET Core)
+        ↓
 Entity Framework Core
-C#
-Swagger / OpenAPI
-SQLite ou SQL Server
+        ↓
+Base de Dados
+```
 
-📁 Estrutura básica do projeto
-DatingApp/
- ├── API/
- │   ├── Controllers/
- │   │   └── MembersController.cs
- │   ├── Data/
- │   │   └── AppDbContext.cs
- │   ├── Models/
- │   │   └── AppUser.cs
- │   ├── Program.cs
- │   └── appsettings.json
- ├── README.md
- └── .gitignore
+---
 
-🧠 Próximos passos
+## 🔑 Autenticação
 
-🔒 Implementar autenticação (JWT)
-💬 Adicionar sistema de mensagens
-🖼️ Upload de fotos de perfil
-🌍 Deploy da API (Azure, Render, Railway, etc.)
+1. Utilizador faz login
+2. API valida credenciais
+3. Token JWT é gerado
+4. Token é enviado no header:
 
+```bash
+Authorization: Bearer {token}
+```
 
-📦 Repositório: github.com/joaoggomes98/datingapp
+---
+
+## 📡 Endpoints principais
+
+### 🔹 Auth
+
+* `POST /api/account/login`
+
+---
+
+### 🔹 Admin
+
+* `GET /api/admin/users`
+* `POST /api/admin/users`
+* `PUT /api/admin/users/{id}`
+* `DELETE /api/admin/users/{id}`
+
+---
+
+### 🔹 PT
+
+* `GET /api/PT/clients`
+
+* `POST /api/PT/clients`
+
+* `PUT /api/PT/clients/{id}`
+
+* `DELETE /api/PT/clients/{id}`
+
+* `GET /api/PT/training/{clientId}`
+
+* `GET /api/PT/nutrition/{clientId}`
+
+---
+
+### 🔹 Client
+
+* `GET /api/client/training/my-plans`
+* `GET /api/client/nutrition/my-plans`
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+```text
+src/app
+├── core
+│   ├── services
+│   ├── models
+│
+├── features
+│   ├── auth
+│   ├── pt
+│   ├── client
+│   ├── super-admin
+│
+├── layout
+│   ├── public-layout
+│   ├── private-layout
+│
+└── shared
+    ├── components
+```
+
+---
+
+## ⚙️ Setup do Projeto
+
+### Backend
+
+```bash
+cd API
+dotnet restore
+dotnet run
+```
+
+---
+
+### Frontend
+
+```bash
+cd client
+npm install
+ng serve
+```
+
+---
+
+## 🌐 Acesso
+
+Frontend:
+
+```
+http://localhost:4200
+```
+
+API:
+
+```
+https://localhost:5001
+```
+
+---
+
+## 📌 Roadmap
+
+* [ ] Dashboard com métricas avançadas
+* [ ] Estrutura de treino por dias/exercícios
+* [ ] Estrutura de nutrição por refeições
+* [ ] Notificações
+* [ ] Melhorias de UX/UI
+
+---
+
+## 🧠 Autor
+
+Desenvolvido por [Teu Nome]
+
+---
+
+## 📄 Licença
+
+Este projeto é open-source e pode ser utilizado para fins educativos ou comerciais.
